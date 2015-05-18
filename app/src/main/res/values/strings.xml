@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">CA2_Multimedia_And_Mobile_App_Development</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="play_game">Play Game</string>
+    <string name="statistics">Statistics</string>
+    <string name="quit">Quit</string>
+    <string name="dartboard_pic">This is dartboard image</string>
+    <string name="db2">dartboard_2</string>
+    <string name="title_activity_play_game">play_game</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_statistics">statistics</string>
+    <string name="num_1">new button</string>
+    <string name="del_character">del</string>
+    <string name="three_dart_ave">Three dart average</string>
+    <string name="one_dart_average">One dart average</string>
+    <string name="Highest_score">Highest score</string>
+    <string name="maximums">180s</string>
+    <string name="one_fortys">140+</string>
+    <string name="one_hundreds">100+</string>
+    <string name="legs_played">Legs played</string>
+    <string name="sixty_plus">60+</string>
+    <string name="best_leg">Best leg</string>
+    <string name="num_one">1</string>
+    <string name="num_two">2</string>
+    <string name="num_three">3</string>
+    <string name="num_four">4</string>
+    <string name="num_five">5</string>
+    <string name="num_six">6</string>
+    <string name="num_seven">7</string>
+    <string name="num_8">8</string>
+    <string name="num_9">9</string>
+    <string name="mode">mode</string>
+    <string name="stats">stats</string>
+    <string name="enter_button">enter</string>
+    <string name="redo_button">redo</string>
+    <string name="num_zero">0</string>
+    <string name="undo">undo</string>
+    <string name="player_heading">Player:</string>
+    <string name="legs_heading">Legs:</string>
+    <string name="score_left_heading">Left:</string>
+    <string name="current_player_name_heading">Player 1:</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+    <string name="checkout_percent">Checkout Percent</string>
+    <string name="statistics_heading">Statistics</string>
+    <string name="title_activity_splash_screen">splash_screen</string>
+    <string name="title_activity_splash">Splash</string>
+
+</resources>
