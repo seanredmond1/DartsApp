@@ -4,15 +4,44 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class statistics extends ActionBarActivity {
+
+    TextView legsCompleted;
+    TextView sixtyPlusScoresP1;
+    TextView sixtyPlusScoresP2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+
+        legsCompleted = (TextView) findViewById(R.id.legsCompleted);
+        sixtyPlusScoresP1 = (TextView) findViewById(R.id.sixtyPlusP1);
+        sixtyPlusScoresP2 = (TextView) findViewById(R.id.sixtyPlusP2);
+
+
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            int legsFinished = extras.getInt("legsDone");
+            int sixtyPlusesP1 = extras.getInt("sixtyPlusScoresP1");
+            int sixtyPlusesP2 = extras.getInt("sixtyPlusScoresP2");
+
+
+            legsCompleted.setText("" + legsFinished);
+            sixtyPlusScoresP1.setText(""+ sixtyPlusesP1);
+            sixtyPlusScoresP2.setText(""+ sixtyPlusesP2);
+
+
+        }
     }
+
+
+
 
 
     @Override
