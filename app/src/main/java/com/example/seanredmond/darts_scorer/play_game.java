@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,14 @@ public class play_game extends ActionBarActivity {
     TextView scored, remainingP1, player1Legs, remainingP2, player2Legs, textViewTime;
     Button btnStart, btnStop;
     Button num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9;
+
+
+    //statistics screen variables
+    int legsPlayed = 0;
+    int [] sixtyPlusScores = {0,0};
+    int [] tonPlusScores = {0,0};
+    int [] tonFortyPlusScores = {0,0};
+    int [] tonEightyScores = {0,0};
 
 
     @Override
@@ -72,11 +81,29 @@ public class play_game extends ActionBarActivity {
         player2Legs.setText("0");
     }
 
+
+
     //stats button opens the statistics activity
     public void onClick(View view) {//this method creates intent which allows to switch to other activity
-        Intent i = new Intent(this, statistics.class);
+        Intent i = new Intent(getApplicationContext(), statistics.class);
+        i.putExtra("legsDone", legsPlayed );
+        i.putExtra("sixtyPlusScoresP1", sixtyPlusScores[0]);
+        i.putExtra("sixtyPlusScoresP2", sixtyPlusScores[1]);
+        i.putExtra("tonPlusScoresP1", tonPlusScores[0]);
+        i.putExtra("tonPlusScoresP2", tonPlusScores[1]);
+        i.putExtra("tonFortyPlusScoresP1", tonFortyPlusScores[0]);
+        i.putExtra("tonFortyPlusScoresP2", tonFortyPlusScores[1]);
+        i.putExtra("tonEightyPlusScoresP1", tonEightyScores[0]);
+        i.putExtra("tonEightyPlusScoresP2", tonEightyScores[1]);
         startActivity(i);
     }
+
+
+
+
+
+
+
 
 
     boolean isZero = true;
@@ -110,6 +137,21 @@ public class play_game extends ActionBarActivity {
         //the code above would be better if could be made more efficient as already using similiar code in onFinish
 
         int scoreHit = Integer.parseInt(scored.getText().toString());//convert the 3 dart score to store it as an integer
+
+        if (scoreHit>=60 && scoreHit<100){
+            sixtyPlusScores[player]++;
+        }
+        else if(scoreHit>=100&& scoreHit<140){
+            tonPlusScores[player]++;
+        }else if(scoreHit>=140 && scoreHit <180){
+            tonFortyPlusScores[player]++;
+        }else if(scoreHit==180){
+            tonEightyScores[player]++;
+        }else{
+            //do nothing not between 100 and 180
+        }
+
+
         final CounterClass timer = new CounterClass(10000, 1000);
         timer.start();//start the timer when the user clicks enter
         btnStop.setOnClickListener(new View.OnClickListener() {
@@ -147,6 +189,9 @@ public class play_game extends ActionBarActivity {
 
 // MAYBE create method called legsWonCounter(){
         if (scoreLeft[player] == 0) {
+
+            legsPlayed++;//for statistics screen
+
             if (player == 0) {
                 legs[player] = legs[player] + 1;
                 player1Legs.setText("" + legs[player]);
@@ -175,6 +220,15 @@ public class play_game extends ActionBarActivity {
         isZero = true;//when the "numClicked" method is used again there will be proper formatting using number 0, i.e. can't proceed by clicking zero as first number (so can't have 00). Also, when input next number there won't be a zero in front of it (e.g. won't have 034).
 
     }
+
+
+
+
+
+
+
+
+
 
 
 
