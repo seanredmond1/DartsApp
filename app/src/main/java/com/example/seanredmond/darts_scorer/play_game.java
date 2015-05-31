@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,7 +19,7 @@ public class play_game extends ActionBarActivity {
 
     TextView scored, remainingP1, player1Legs, remainingP2, player2Legs, textViewTime;
     Button btnStart, btnStop;
-    Button num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9;
+    Button num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, input_26, input_45;
 
 
     //statistics screen variables
@@ -29,6 +28,11 @@ public class play_game extends ActionBarActivity {
     int [] tonPlusScores = {0,0};
     int [] tonFortyPlusScores = {0,0};
     int [] tonEightyScores = {0,0};
+    int [] legsWon = {0,0};
+    int [] dartsThrown = {0,0};
+    int [] pointsScored = {0,0};
+    int oneDartAverage [] = {0, 0};
+    int threeDartAverage [] = {0,0};
 
 
     @Override
@@ -50,6 +54,8 @@ public class play_game extends ActionBarActivity {
         num_8 = (Button) findViewById(R.id.num_8);
         num_9 = (Button) findViewById(R.id.num_9);
         num_0 = (Button) findViewById(R.id.num_0);
+        input_26 = (Button) findViewById(R.id.input_26);
+        input_45 = (Button) findViewById(R.id.input_45);
 
         final CounterClass timer = new CounterClass(15000, 1000);//i.e. 3 mins (180 secs) for 180,000
 
@@ -79,6 +85,7 @@ public class play_game extends ActionBarActivity {
         remainingP2.setText("501");
         player2Legs = (TextView) findViewById(R.id.textView10);
         player2Legs.setText("0");
+
     }
 
 
@@ -93,8 +100,14 @@ public class play_game extends ActionBarActivity {
         i.putExtra("tonPlusScoresP2", tonPlusScores[1]);
         i.putExtra("tonFortyPlusScoresP1", tonFortyPlusScores[0]);
         i.putExtra("tonFortyPlusScoresP2", tonFortyPlusScores[1]);
-        i.putExtra("tonEightyPlusScoresP1", tonEightyScores[0]);
-        i.putExtra("tonEightyPlusScoresP2", tonEightyScores[1]);
+        i.putExtra("tonEightyScoresP1", tonEightyScores[0]);
+        i.putExtra("tonEightyScoresP2", tonEightyScores[1]);
+        i.putExtra("legsWonP1", legsWon[0]);
+        i.putExtra("legsWonP2", legsWon[1]);
+        i.putExtra("oneDartAveP1", oneDartAverage[0]);
+        i.putExtra("oneDartAveP2", oneDartAverage[1]);
+        i.putExtra("threeDartAveP1", threeDartAverage[0]);
+        i.putExtra("threeDartAveP2", threeDartAverage[1]);
         startActivity(i);
     }
 
@@ -138,19 +151,6 @@ public class play_game extends ActionBarActivity {
 
         int scoreHit = Integer.parseInt(scored.getText().toString());//convert the 3 dart score to store it as an integer
 
-        if (scoreHit>=60 && scoreHit<100){
-            sixtyPlusScores[player]++;
-        }
-        else if(scoreHit>=100&& scoreHit<140){
-            tonPlusScores[player]++;
-        }else if(scoreHit>=140 && scoreHit <180){
-            tonFortyPlusScores[player]++;
-        }else if(scoreHit==180){
-            tonEightyScores[player]++;
-        }else{
-            //do nothing not between 100 and 180
-        }
-
 
         final CounterClass timer = new CounterClass(10000, 1000);
         timer.start();//start the timer when the user clicks enter
@@ -175,7 +175,24 @@ public class play_game extends ActionBarActivity {
         if (scoreHit > 180 || scoreHit > scoreLeft[player] || scoreHit + 1 == scoreLeft[player] || (scoreHit == 159 && scoreLeft[player] == 159) || invalidNumHit) {
             //won't adjust score left if invalid score/checkout entered
         } else {
+
+            if (scoreHit>=60 && scoreHit<100){
+                sixtyPlusScores[player]++;
+            }
+            else if(scoreHit>=100&& scoreHit<140){
+                tonPlusScores[player]++;
+            }else if(scoreHit>=140 && scoreHit <180){
+                tonFortyPlusScores[player]++;
+            }else if(scoreHit==180){
+                tonEightyScores[player]++;
+            }else{
+                //do nothing not between 100 and 180
+            }
+
             scoreLeft[player] = scoreLeft[player] - scoreHit;
+
+            pointsScored[player] = pointsScored[player]+scoreHit;
+            dartsThrown[player]+=3;
             if (player == 0) {
                 remainingP1.setText("" + scoreLeft[player]);//will adjust the score left value if a valid input is inputted
             } else {
@@ -195,16 +212,39 @@ public class play_game extends ActionBarActivity {
             if (player == 0) {
                 legs[player] = legs[player] + 1;
                 player1Legs.setText("" + legs[player]);
+                legsWon[player]++;
+                dartsThrown[player]+=3;
+
+                //get average score - player 1 average
+                oneDartAverage[0] = pointsScored[0]/dartsThrown[0];
+                threeDartAverage[0]= oneDartAverage[0]*3;
+                //player 2 average
+                oneDartAverage[1] = pointsScored[1]/dartsThrown[1];
+                threeDartAverage[1]= oneDartAverage[1]*3;
+
+
                 player = 1;//switch player as it is now their turn
             } else {
                 legs[player] = legs[player] + 1;
                 player2Legs.setText("" + legs[player]);
+                legsWon[player]++;
+                dartsThrown[player]+=3;
+
+                //get average score for both players - player one
+                oneDartAverage[0] = pointsScored[0]/dartsThrown[0];
+                threeDartAverage[0]= oneDartAverage[0]*3;
+                //player two average
+                oneDartAverage[1] = pointsScored[1]/dartsThrown[1];
+                threeDartAverage[1]= oneDartAverage[1]*3;
+
+
                 player = 0;
             }
             scoreLeft[0] = 501;//If 0 remainingP1 reset remainingP1 to 501 to start a new game.
             scoreLeft[1] = 501;
             remainingP1.setText("501");
             remainingP2.setText("501");
+
         }
 // this would be the end of this method here => }
 
@@ -224,21 +264,13 @@ public class play_game extends ActionBarActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-/*
     //have to find out how to do this best.
     public void deleteClicked(View sender) {
         Button bt = (Button) sender;
         scored.setText("0");
-    }*/
+        isZero=true;
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

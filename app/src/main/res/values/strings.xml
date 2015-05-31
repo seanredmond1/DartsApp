@@ -21,6 +21,7 @@
     <string name="legs_played">Legs played</string>
     <string name="sixty_plus">60+</string>
     <string name="best_leg">Best leg</string>
+    <string name="worst_leg">Worst leg</string>
     <string name="num_one">1</string>
     <string name="num_two">2</string>
     <string name="num_three">3</string>
@@ -33,9 +34,9 @@
     <string name="mode">mode</string>
     <string name="stats">stats</string>
     <string name="enter_button">enter</string>
-    <string name="redo_button">redo</string>
+    <string name="quick_input_45">45</string>
     <string name="num_zero">0</string>
-    <string name="undo">undo</string>
+    <string name="quick_input_26">26</string>
     <string name="player_heading">Player:</string>
     <string name="legs_heading">Legs:</string>
     <string name="score_left_heading">Left:</string>
@@ -43,8 +44,11 @@
     <string name="player_1">Player 1</string>
     <string name="player_2">Player 2</string>
     <string name="checkout_percent">Checkout Percent</string>
-    <string name="statistics_heading">Statistics</string>
+    <string name="statistics_heading">Match Statistics</string>
     <string name="title_activity_splash_screen">splash_screen</string>
     <string name="title_activity_splash">Splash</string>
+    <string name="player1_tag_in_statistics_activity">Player 1</string>
+    <string name="player2_tag_in_statistics_activity">Player 2</string>
+    <string name="legs_won">Legs Won</string>
 
 </resources>
