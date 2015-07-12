@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.seanredmond.darts_scorer.statistics"
+    tools:context="com.sean_redmond.darts_scorer.statistics"
     android:background="#ff621664"
     android:id="@+id/relative_layout">
 
@@ -23,22 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/checkout_percent"
-        android:id="@+id/textView14"
-        android:textColor="#ffffffff"
-        android:textSize="15sp"
-        android:layout_below="@+id/textView12"
-        android:layout_alignRight="@+id/textView16"
-        android:layout_alignEnd="@+id/textView16" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/three_dart_ave"
         android:id="@+id/textView15"
         android:textColor="#ffffffff"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_below="@+id/textView24"
         android:layout_centerHorizontal="true" />
 
@@ -51,18 +39,7 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/textView15"
         android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/Highest_score"
-        android:id="@+id/textView17"
-        android:textColor="#ffffffff"
-        android:layout_below="@+id/textView16"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,10 +48,10 @@
         android:text="@string/maximums"
         android:id="@+id/textView18"
         android:textColor="#ffffffff"
-        android:layout_below="@+id/textView17"
         android:layout_alignRight="@+id/textView20"
         android:layout_alignEnd="@+id/textView20"
-        android:textSize="15sp" />
+        android:textSize="20sp"
+        android:layout_below="@+id/textView16" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,7 +63,7 @@
         android:layout_below="@+id/textView18"
         android:layout_alignLeft="@+id/textView18"
         android:layout_alignStart="@+id/textView18"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,7 +74,7 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/textView19"
         android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -120,10 +97,10 @@
         android:id="@+id/textView21"
         android:textColor="#ffffffff"
         android:textSize="15sp"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/textView13"
-        android:layout_toLeftOf="@+id/textView16"
-        android:layout_toStartOf="@+id/textView16"
-        android:layout_marginTop="26dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -134,18 +111,7 @@
         android:textColor="#ffffffff"
         android:layout_below="@+id/textView20"
         android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/best_leg"
-        android:id="@+id/textView23"
-        android:textColor="#ffffffff"
-        android:layout_below="@+id/textView22"
-        android:layout_centerHorizontal="true"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -164,12 +130,12 @@
         android:text="@string/player1_tag_in_statistics_activity"
         android:id="@+id/textView"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:layout_marginTop="35dp"
         android:background="#ff2fa4ff"
         android:layout_below="@+id/legsCompleted"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21" />
+        android:layout_alignRight="@+id/textView21"
+        android:layout_alignEnd="@+id/textView21" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -178,11 +144,11 @@
         android:text="@string/player2_tag_in_statistics_activity"
         android:id="@+id/textView3"
         android:textColor="#000000"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:background="#ff2fa4ff"
         android:layout_alignTop="@+id/textView"
-        android:layout_alignRight="@+id/legsCompleted"
-        android:layout_alignEnd="@+id/legsCompleted" />
+        android:layout_toRightOf="@+id/textView24"
+        android:layout_toEndOf="@+id/textView24" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -190,9 +156,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/sixtyPlusP1"
         android:textColor="#ff7bff8c"
-        android:layout_above="@+id/textView23"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21" />
+        android:layout_alignTop="@+id/textView22"
+        android:layout_alignLeft="@+id/tonPlusP1"
+        android:layout_alignStart="@+id/tonPlusP1"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -200,42 +167,32 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/sixtyPlusP2"
         android:textColor="#ff7bff8c"
-        android:layout_above="@+id/textView23"
-        android:layout_alignLeft="@+id/tonPlusP2"
-        android:layout_alignStart="@+id/tonPlusP2" />
+        android:layout_below="@+id/textView20"
+        android:layout_alignLeft="@+id/tonFortyPlusP2"
+        android:layout_alignStart="@+id/tonFortyPlusP2"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tonPlusP1"
-        android:layout_alignBottom="@+id/textView20"
-        android:layout_alignLeft="@+id/sixtyPlusP1"
-        android:layout_alignStart="@+id/sixtyPlusP1"
-        android:textColor="#ff7bff8c" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/tonPlusP2"
-        android:layout_below="@+id/textView19"
         android:textColor="#ff7bff8c"
-        android:layout_alignBottom="@+id/textView20"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_toLeftOf="@+id/textView3"
-        android:layout_toStartOf="@+id/textView3" />
+        android:layout_below="@+id/tonFortyPlusP1"
+        android:layout_alignLeft="@+id/tonFortyPlusP1"
+        android:layout_alignStart="@+id/tonFortyPlusP1"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tonFortyPlusP1"
-        android:layout_above="@+id/textView20"
-        android:layout_alignLeft="@+id/tonPlusP1"
-        android:layout_alignStart="@+id/tonPlusP1"
-        android:textColor="#ff7bff8c" />
+        android:textColor="#ff7bff8c"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_alignLeft="@+id/tonEightyPlusP1"
+        android:layout_alignStart="@+id/tonEightyPlusP1"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -243,19 +200,21 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tonFortyPlusP2"
         android:textColor="#ff7bff8c"
-        android:layout_alignBottom="@+id/textView19"
-        android:layout_alignLeft="@+id/tonPlusP2"
-        android:layout_alignStart="@+id/tonPlusP2" />
+        android:layout_below="@+id/tonEightyPlusP2"
+        android:layout_alignLeft="@+id/tonEightyPlusP2"
+        android:layout_alignStart="@+id/tonEightyPlusP2"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tonEightyPlusP1"
-        android:layout_below="@+id/textView17"
-        android:layout_alignLeft="@+id/tonFortyPlusP1"
-        android:layout_alignStart="@+id/tonFortyPlusP1"
-        android:textColor="#ff7bff8c" />
+        android:textColor="#ff7bff8c"
+        android:layout_alignLeft="@+id/oneDAveP1"
+        android:layout_alignStart="@+id/oneDAveP1"
+        android:layout_below="@+id/textView16"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -263,20 +222,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/tonEightyPlusP2"
         android:textColor="#ff7bff8c"
-        android:layout_below="@+id/textView17"
-        android:layout_toRightOf="@+id/tonFortyPlusP2"
-        android:layout_toEndOf="@+id/tonFortyPlusP2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/worst_leg"
-        android:id="@+id/textView12"
-        android:textColor="#ffffffff"
-        android:textSize="15sp"
-        android:layout_below="@+id/textView23"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/oneDAveP2"
+        android:layout_alignLeft="@+id/oneDAveP2"
+        android:layout_alignStart="@+id/oneDAveP2"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -285,7 +234,7 @@
         android:text="@string/legs_won"
         android:id="@+id/textView24"
         android:textColor="#ffffffff"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:layout_below="@+id/textView3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
@@ -295,10 +244,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/legsWonP1"
-        android:layout_above="@+id/textView15"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ff7bff8c" />
+        android:textColor="#ff7bff8c"
+        android:textSize="20sp"
+        android:layout_above="@+id/threeDAveP1"
+        android:layout_alignTop="@+id/textView24"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -306,9 +257,10 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/legsWonP2"
         android:textColor="#ff7bff8c"
-        android:layout_alignTop="@+id/textView24"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:textSize="20sp"
+        android:layout_above="@+id/threeDAveP2"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -317,8 +269,9 @@
         android:id="@+id/oneDAveP1"
         android:textColor="#ff7bff8c"
         android:layout_alignBottom="@+id/textView16"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/threeDAveP1"
+        android:layout_alignStart="@+id/threeDAveP1"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -328,17 +281,19 @@
         android:layout_alignBottom="@+id/textView16"
         android:layout_alignLeft="@+id/threeDAveP2"
         android:layout_alignStart="@+id/threeDAveP2"
-        android:textColor="#ff7bff8c" />
+        android:textColor="#ff7bff8c"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/threeDAveP1"
-        android:layout_below="@+id/legsWonP1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ff7bff8c" />
+        android:textColor="#ff7bff8c"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_alignLeft="@+id/legsWonP1"
+        android:layout_alignStart="@+id/legsWonP1"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -348,6 +303,18 @@
         android:textColor="#ff7bff8c"
         android:layout_alignTop="@+id/textView15"
         android:layout_alignLeft="@+id/legsWonP2"
-        android:layout_alignStart="@+id/legsWonP2" />
+        android:layout_alignStart="@+id/legsWonP2"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/tonPlusP2"
+        android:textColor="#ff7bff8c"
+        android:layout_above="@+id/sixtyPlusP2"
+        android:layout_alignLeft="@+id/sixtyPlusP2"
+        android:layout_alignStart="@+id/sixtyPlusP2"
+        android:textSize="20sp" />
 
 </RelativeLayout>

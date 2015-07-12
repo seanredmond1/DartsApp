@@ -1,4 +1,4 @@
-package com.example.seanredmond.darts_scorer;
+package com.sean_redmond.darts_scorer;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -7,19 +7,22 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
 public class play_game extends ActionBarActivity {
 
-    TextView scored, remainingP1, player1Legs, remainingP2, player2Legs, textViewTime;
+    TextView scored, remainingP1, player1Legs, remainingP2, player2Legs, textViewTime,currentlyP1Icon, currentlyP2Icon;
     Button btnStart, btnStop;
-    Button num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, input_26, input_45;
+    Button num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, del_button, enter_button;
 
 
     //statistics screen variables
@@ -33,6 +36,7 @@ public class play_game extends ActionBarActivity {
     int [] pointsScored = {0,0};
     int oneDartAverage [] = {0, 0};
     int threeDartAverage [] = {0,0};
+    boolean ignoreScoreHitIfTimeOut = false;
 
 
     @Override
@@ -44,6 +48,8 @@ public class play_game extends ActionBarActivity {
         btnStop = (Button) findViewById(R.id.btnStop);
         textViewTime = (TextView) findViewById(R.id.textViewTime);
         textViewTime.setText("00:00:10");
+        currentlyP1Icon = (TextView) findViewById(R.id.currentlyP1Icon);
+        currentlyP2Icon = (TextView) findViewById(R.id.currentlyP2Icon);
         num_1 = (Button) findViewById(R.id.num_1);
         num_2 = (Button) findViewById(R.id.num_2);
         num_3 = (Button) findViewById(R.id.num_3);
@@ -54,8 +60,10 @@ public class play_game extends ActionBarActivity {
         num_8 = (Button) findViewById(R.id.num_8);
         num_9 = (Button) findViewById(R.id.num_9);
         num_0 = (Button) findViewById(R.id.num_0);
-        input_26 = (Button) findViewById(R.id.input_26);
-        input_45 = (Button) findViewById(R.id.input_45);
+        del_button = (Button) findViewById(R.id.del_button);
+        enter_button = (Button) findViewById(R.id.enter_button);
+
+
 
         final CounterClass timer = new CounterClass(15000, 1000);//i.e. 3 mins (180 secs) for 180,000
 
@@ -64,6 +72,9 @@ public class play_game extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 timer.start();
+                enter_button.setEnabled(false);
+                btnStart.setEnabled(false);//This start timer button can only be used once at the start of a leg (from then on use enter button to complete a leg).
+
             }
         });
 
@@ -72,6 +83,7 @@ public class play_game extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 timer.cancel();
+                enter_button.setEnabled(true);
             }
         });
 
@@ -86,8 +98,9 @@ public class play_game extends ActionBarActivity {
         player2Legs = (TextView) findViewById(R.id.textView10);
         player2Legs.setText("0");
 
-    }
+        currentlyP1Icon.setVisibility(View.VISIBLE);//set top player icon to visible when starting match as this is first player up
 
+    }
 
 
     //stats button opens the statistics activity
@@ -113,12 +126,6 @@ public class play_game extends ActionBarActivity {
 
 
 
-
-
-
-
-
-
     boolean isZero = true;
 
     public void numClicked(View sender) {//this method inputs 3 dart score but can't be zero i.e. can't input 00.
@@ -140,29 +147,31 @@ public class play_game extends ActionBarActivity {
     int[] scoreLeft = {501, 501};
     int[] legs = {0, 0};//keeps track of the number of legs won
 
+
+
+
+    public void movePointerIfValidScore(){
+            if (player == 0) {
+                currentlyP2Icon.setVisibility(View.VISIBLE);//will switch the pointer to opponent when entered score as their turn.
+                currentlyP1Icon.setVisibility(View.INVISIBLE);
+            } else {
+                currentlyP1Icon.setVisibility(View.VISIBLE);
+                currentlyP2Icon.setVisibility(View.INVISIBLE);
+            }
+    }
+
+
     public void enterClicked(View sender) {
 
+
         //this nearly the same as the code section in onFinish method - try to reuse and modify
-        Button[] buttons = {num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9};
+        Button[] buttons = {num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, del_button};
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].setEnabled(true);
         }
         //the code above would be better if could be made more efficient as already using similiar code in onFinish
-
         int scoreHit = Integer.parseInt(scored.getText().toString());//convert the 3 dart score to store it as an integer
 
-
-        final CounterClass timer = new CounterClass(10000, 1000);
-        timer.start();//start the timer when the user clicks enter
-        btnStop.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                timer.cancel();
-            }
-        });
-
-// MAYBE create method called scoreRemainingCalc(){   (could maybe return an int to feed player score left 0 into next method so may not need to use scoreleft as an instance varibale
 
         int[] invalidScores = {179, 178, 176, 175, 173, 172, 169, 168, 166, 165, 163, 162};
 
@@ -172,24 +181,58 @@ public class play_game extends ActionBarActivity {
                 invalidNumHit = true;
             }
         }
+
         if (scoreHit > 180 || scoreHit > scoreLeft[player] || scoreHit + 1 == scoreLeft[player] || (scoreHit == 159 && scoreLeft[player] == 159) || invalidNumHit) {
             //won't adjust score left if invalid score/checkout entered
-        } else {
+            Toast toast= Toast.makeText(getApplicationContext(),
+                    "You've entered an invalid score, Try again!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER|Gravity.CENTER_HORIZONTAL, 0, 75);
+            toast.show();
 
-            if (scoreHit>=60 && scoreHit<100){
-                sixtyPlusScores[player]++;
-            }
-            else if(scoreHit>=100&& scoreHit<140){
-                tonPlusScores[player]++;
-            }else if(scoreHit>=140 && scoreHit <180){
-                tonFortyPlusScores[player]++;
-            }else if(scoreHit==180){
-                tonEightyScores[player]++;
-            }else{
-                //do nothing not between 100 and 180
-            }
+            scored.setText("0");//have to reset score to zero as won't do below as will return from method if invalid score
+            isZero = true;//when the "numClicked" method is used again there will be proper formatting using number 0, i.e. can't proceed by clicking zero as first number (so can't have 00). Also, when input next number there won't be a zero in front of it (e.g. won't have 034).
 
-            scoreLeft[player] = scoreLeft[player] - scoreHit;
+            return;//will exit method i.e. won't adjust scores and stats and switch player if invalid score entered.
+
+        }
+
+        enter_button.setEnabled(false);//can't click enter again until stop is clicked (as it will be re-enabled then) or if run out of time (can click to resume game)
+
+        final CounterClass timer = new CounterClass(10000, 1000);
+        timer.start();//start the timer when the user clicks enter
+        btnStop.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    timer.cancel();
+                    enter_button.setEnabled(true);
+                }
+            });
+
+
+
+
+        if(ignoreScoreHitIfTimeOut ==true) {//don't want to adjust score for the number entered if time ran out
+            scoreHit=0;
+        }
+
+                if (scoreHit >= 60 && scoreHit < 100) {
+                    sixtyPlusScores[player]++;
+                } else if (scoreHit >= 100 && scoreHit < 140) {
+                    tonPlusScores[player]++;
+                } else if (scoreHit >= 140 && scoreHit < 180) {
+                    tonFortyPlusScores[player]++;
+                } else if (scoreHit == 180) {
+                    tonEightyScores[player]++;
+                } else {
+                    //do nothing not between 60 and 180
+                }
+
+                movePointerIfValidScore();
+                scoreLeft[player] = scoreLeft[player] - scoreHit;
+
+
+
 
             pointsScored[player] = pointsScored[player]+scoreHit;
             dartsThrown[player]+=3;
@@ -198,10 +241,7 @@ public class play_game extends ActionBarActivity {
             } else {
                 remainingP2.setText("" + scoreLeft[player]);
             }
-        }
 
-
-//this would be the end of the method so put closing bracket here => }
 
 
 // MAYBE create method called legsWonCounter(){
@@ -258,6 +298,7 @@ public class play_game extends ActionBarActivity {
 
         scored.setText("0");
         isZero = true;//when the "numClicked" method is used again there will be proper formatting using number 0, i.e. can't proceed by clicking zero as first number (so can't have 00). Also, when input next number there won't be a zero in front of it (e.g. won't have 034).
+        ignoreScoreHitIfTimeOut = false;//reset to false so will continue to adjust scores if timer doesn't run out
 
     }
 
@@ -310,16 +351,18 @@ public class play_game extends ActionBarActivity {
             String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                     TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                     TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
-            // System.out.println(hms);
             textViewTime.setText(hms);
         }
 
         @Override
         public void onFinish() {
+            enter_button.setEnabled(true);//when timer reaches zero can click enter again to restart clock.
             textViewTime.setText("Time up. 60 point penalty! Press Enter to re-start clock!");
-            scoreLeft[player] += 60;// if the timer finishes before player presses stop, ignore the 3 dart score hit - just add 60 to what was already on (i.e. x += 60 is equivalent to x = x + 60) and add back scoreHit as player doesn't get the points.
 
-            Button[] buttons = {num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9};
+            scoreLeft[player] += 60;// if the timer finishes before player presses stop, ignore the 3 dart score hit - just add 60 to what was already on (i.e. x += 60 is equivalent to x = x + 60) and add back scoreHit as player doesn't get the points.
+            ignoreScoreHitIfTimeOut = true;
+
+            Button[] buttons = {num_0, num_1, num_2, num_3, num_4, num_5, num_6, num_7, num_8, num_9, del_button };
             for (int i = 0; i < buttons.length; i++) {
                 buttons[i].setEnabled(false);
             }

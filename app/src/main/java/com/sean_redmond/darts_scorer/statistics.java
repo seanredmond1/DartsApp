@@ -1,13 +1,10 @@
-package com.example.seanredmond.darts_scorer;
+package com.sean_redmond.darts_scorer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 
 public class statistics extends ActionBarActivity {
 

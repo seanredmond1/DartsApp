@@ -174,7 +174,7 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:textSize="15sp"
-        android:background="#ff0fff74"
+        android:background="#ffffc61e"
         android:textColor="#ffffffff"
         android:layout_below="@+id/btnStart"
         android:layout_alignParentLeft="true"

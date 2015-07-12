@@ -4,10 +4,10 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
     defaultConfig {
-        applicationId "com.example.seanredmond.ca2_multimedia_and_mobile_app_development"
+        applicationId "com.sean_redmond.darts_scorer"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 1
+        versionCode 3
         versionName "1.0"
     }
     buildTypes {

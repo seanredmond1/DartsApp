@@ -1,4 +1,4 @@
-package com.example.seanredmond.darts_scorer;
+package com.sean_redmond.darts_scorer;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
+
+
 
 public class MainActivity extends ActionBarActivity {
 
