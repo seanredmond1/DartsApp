@@ -1,9 +1,13 @@
 <resources>
+
+
     <string name="app_name">Power Darts</string>
 
+    <string name="instructions">Instructions</string>
     <string name="action_settings">Settings</string>
     <string name="play_game">Play Game</string>
     <string name="statistics">Statistics</string>
+    <string name="resume_game">Resume Game</string>
     <string name="quit">Quit</string>
     <string name="dartboard_pic">This is dartboard image</string>
     <string name="db2">dartboard_2</string>
@@ -34,7 +38,6 @@
     <string name="enter_button">enter</string>
     <string name="del_button">del</string>
     <string name="stats">stats</string>
-
     <string name="num_zero">0</string>
     <string name="quick_input_26">26</string>
     <string name="player_heading">Player:</string>
@@ -53,5 +56,16 @@
     <string name="title_activity_main_activity2">MainActivity2Activity</string>
     <string name="title_activity_game_options">game_options</string>
     <string name="currentPlayerIcon">►</string>
+    <string name="resetScoresNewGame">Reset</string>
+    <string name="newGamePrompt">Are you sure you want a new game</string>
+    <string name="positiveAnswer">Yes</string>
+    <string name="noNewGame">No</string>
+    <string name="title_activity_game_setup">game_setup</string>
+    <string name="title_activity_instructions_screen">instructions_screen</string>
+    <string name="instructions_tag">Instructions</string>
+    <string name="setup_tag">Setup Screen</string>
+    <string name="game_instructions_txt">In this screen you can set up the number of legs you would like to play as well as the start score and also the timer details and the penalty deductions</string>
+    <string name="scorer_sc">Scorer Screen</string>
+    <string name="game_info_instructions_txt">To begin the game press the start button. Then before you can input your you must stop the timer using the stop buttton.</string>
 
 </resources>
